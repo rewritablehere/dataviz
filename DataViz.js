@@ -72,7 +72,7 @@ function windowResized() {
 function drawXAxisMarkings() {
   // X-axis values and positions
   const xValues = [26, 31, 1, 7, 14, 21, 28, 1, 7, 14, 21];
-  const xAxisY = height - 50; // Adjust the Y position as needed
+  const xAxisY = 0; // Adjust the Y position as needed
   
   // X-axis markings
   stroke(0);
