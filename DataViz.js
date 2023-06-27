@@ -3,9 +3,15 @@ let angleX = 0;
 let angleY = 0;
 let startX, startY;
 let isDragging = false;
+let myFont;
+
+function preload() {
+  myFont = loadFont('assets/OpenSans.ttf'); // Replace 'path/to/font.ttf' with the actual path to your font file
+}
 
 function setup() {
   createCanvas(windowWidth, windowHeight, WEBGL);
+  textFont(myFont); // Set the loaded font
 }
 
 function draw() {
@@ -28,8 +34,10 @@ function draw() {
   // Draw axes
   drawAxes();
 
-  // Draw the cube
-  box(cubeSize);
+  // Draw the cube box(cubeSize);
+  
+  // Draw X-axis markings
+  drawXAxisMarkings();
 }
 
 function drawAxes() {
@@ -60,3 +68,28 @@ function windowResized() {
   // Resize the canvas when the window is resized
   resizeCanvas(windowWidth, windowHeight, WEBGL);
 }
+
+function drawXAxisMarkings() {
+  // X-axis values and positions
+  const xValues = [26, 31, 1, 7, 14, 21, 28, 1, 7, 14, 21];
+  const xAxisY = height - 50; // Adjust the Y position as needed
+  
+  // X-axis markings
+  stroke(0);
+  strokeWeight(10);
+  
+  const xSpacing = (width - 100) / (xValues.length - 1);
+  
+  for (let i = 0; i < xValues.length; i++) {
+    const x = 50 + i * xSpacing; // Adjust the starting X position as needed
+    
+    // Draw vertical line
+    line(x, xAxisY, x, xAxisY + 10);
+    
+    // Draw value text
+    textAlign(CENTER, TOP);
+    noStroke();
+    text(xValues[i], x, xAxisY + 20);
+  }
+}
+
