@@ -51,7 +51,7 @@ function drawAxes() {
 
   // Y-axis (green)
   stroke(0, 255, 0);
-  line(0, 0, 0, 0, 100, 0);
+  line(0, 0, 0, 0, -100, 0);
 
   // Z-axis (blue)
   stroke(0, 0, 255);
