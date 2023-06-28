@@ -4,6 +4,7 @@ let angleY = 0;
 let startX, startY;
 let isDragging = false;
 let myFont;
+let scaleFactor = 3.0; // Initial scale factor
 
 function preload() {
   myFont = loadFont('assets/OpenSans.ttf'); // Replace 'path/to/font.ttf' with the actual path to your font file
@@ -16,7 +17,10 @@ function setup() {
 
 function draw() {
   background(220);
-
+  
+    // Apply the scale factor
+  scale(scaleFactor);
+  
   if (isDragging) {
     let dx = mouseX - startX;
     let dy = mouseY - startY;
@@ -93,3 +97,14 @@ function drawXAxisMarkings() {
   }
 }
 
+function mouseWheel(event) {
+  // Adjust the scale factor based on the mouse wheel delta
+  let delta = event.deltaY * -0.01; // Negative value to invert zoom direction
+  scaleFactor += delta;
+
+  // Limit the scale factor within a specific range
+  scaleFactor = constrain(scaleFactor, 0.5, 3.0);
+
+  // Prevent the default scrolling behavior
+  return false;
+}
